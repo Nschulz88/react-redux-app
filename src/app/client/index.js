@@ -21,9 +21,12 @@ import logger from 'redux-logger';
 
 import routeConfig from '../routeConfig';
 
-const store = createStore(
+import {fetchmessagesMiddleware, messagesReducer} from './reducers/messagesReducer'
+
+let store = createStore(
   combineReducers({
     found: foundReducer,
+    messages: messagesReducer
   }),
   compose(
     createHistoryEnhancer({
@@ -35,7 +38,7 @@ const store = createStore(
     createMatchEnhancer(
       new Matcher(routeConfig),
     ),
-    applyMiddleware(logger),
+    applyMiddleware(logger, fetchmessagesMiddleware),
   ),
 );
 
