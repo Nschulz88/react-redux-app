@@ -2,9 +2,11 @@ import axios from 'axios';
 const ROOT_URL = 'https://natalie-test-autotelic.herokuapp.com/'
 
 const messagesReducer = (state = {loading: true, showMessages: []}, action,) => {
-
   switch (action.type) {
-    case "MESSAGE_SUCCESS" :
+    case 'FETCH_MESSAGES': {
+      return {...state, loading: true}
+    }
+    case "MESSAGES_SUCCESS" :
     return {showMessages: action.messages}
     default: return state
     }
@@ -20,7 +22,7 @@ const fetchmessagesMiddleware = store => next => action => {
       headers: []
     });
     request.then(response => {
-      store.dispatch({type: 'MESSAGES_SUCCESS', messages: response.data})
+      store.dispatch({type: 'MESSAGES_SUCCESS', messages: response.data.results})
     });
   }
 }

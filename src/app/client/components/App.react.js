@@ -4,7 +4,7 @@ import  LinkItem  from './LinkItem.react';
 
 
 function App(props) {
-  console.log("LOOOGGGIIINGGG props.children from APP.js",props.children)
+  console.log("LOOOGGGIIINGGG props.children from APP.js", props.children)
 
   return (
     <div>
