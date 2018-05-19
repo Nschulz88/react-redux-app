@@ -21,7 +21,15 @@ import logger from 'redux-logger';
 
 import routeConfig from '../routeConfig';
 
-import {fetchmessagesMiddleware, messagesReducer} from './reducers/messagesReducer'
+import {messagesReducer} from './reducers/messagesReducer'
+
+const thunkMW = store => next => action => {
+  if(typeof action === 'function'){
+    action(store.dispatch, store.getState());
+  } else {
+    next(action);
+  }
+}
 
 let store = createStore(
   combineReducers({
@@ -38,7 +46,7 @@ let store = createStore(
     createMatchEnhancer(
       new Matcher(routeConfig),
     ),
-    applyMiddleware(logger, fetchmessagesMiddleware),
+    applyMiddleware(logger, thunkMW),
   ),
 );
 

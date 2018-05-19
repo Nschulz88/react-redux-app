@@ -1,14 +1,9 @@
 
 import { connect } from 'react-redux'
-import { fetchMessages, fetchMessagesSuccess } from '../actions/messages';
-import { fetchmessagesMiddleware } from '../reducers/messagesReducer';
-
-
-import ShowMessages from '../components/MessagesShow.react'
-
+import MessagesShow from '../components/MessagesShow.react'
+import {fetchMessagesThunk, postMessageThunk, deleteMessageThunk} from '../reducers/messagesReducer';
 
 const mapStateToProps = (state) => {
-  console.log('Redux App State', state);
   return { 
     showMessages: state.messages.showMessages,
     loading: state.messages.loading
@@ -18,9 +13,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     startFetch: () => {
-      dispatch({type: 'FETCH_MESSAGES'})
+      dispatch(fetchMessagesThunk)
+    },
+    createMessage: (text) => {
+      dispatch(postMessageThunk(text));
+    },
+    deleteMessage:(id) => {
+      dispatch(deleteMessageThunk(id))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShowMessages);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesShow);
