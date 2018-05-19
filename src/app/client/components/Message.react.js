@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 
 class Message extends Component {
   componentWillMount() {
-    console.log("IN Message Class:-------",this.props)
     this.props.startFetch(this.props.params.id);
   }
 
@@ -15,8 +14,8 @@ class Message extends Component {
     } else {
     return (
       <div>
-      <div>This is the message id </div>
-      <div>This is the message text: </div>
+      <div>Message id: {showMessage.message.id}</div>
+      <div>Message text: {showMessage.message.text}</div>
     </div>
     );
     } 
