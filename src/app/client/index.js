@@ -47,6 +47,7 @@ let store = createStore(
       new Matcher(routeConfig),
     ),
     applyMiddleware(logger, thunkMW),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   ),
 );
 

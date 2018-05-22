@@ -1,7 +1,7 @@
 import React from 'react';
 
 import App from './client/components/App.react';
-import MessagesList from './client/containers/MessagesContainer';
+import MessagesContainer from './client/containers/MessagesContainer';
 import Message from './client/containers/OneMessageContainer';
 
 
@@ -16,7 +16,7 @@ export default [
   },
   {
     path: '/messages',
-    Component: MessagesList
+    Component: MessagesContainer
   },
   {
     path: '/messages/:id',

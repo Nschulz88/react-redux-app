@@ -11,10 +11,12 @@ const messagesReducer = (state = {loading: true, showMessages: []}, action) => {
     return {showMessages: action.messages}
     }
     case "FETCH_MESSAGE" : {
+      console.log('in FETCH_MESSAGE I AM LOGGING action ---------------------', action)
     return {...state, loading: true}
     }
     case "MESSAGE_SUCCESS" : {
-      return {showMessage: action.id}
+      console.log('in MESSAGES SUCCESS I AM LOGGING action!!!!!!!!........', action)
+      return {showMessages: action.message}
     }
     case "DELETE_MESSAGE" : {
       return {showMessages: action.messages }
@@ -49,7 +51,7 @@ const fetchonemessageThunk = id => (dispatch) => {
       headers: []
     });
     request.then(response => {
-      dispatch({type: 'MESSAGE_SUCCESS', id: id, message: response.data})
+      dispatch({type: 'MESSAGE_SUCCESS', id: id, message: response.data}) // getting correct data!!
     });
 }
 

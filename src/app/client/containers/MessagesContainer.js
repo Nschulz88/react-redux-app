@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import MessagesShow from '../components/MessagesShow.react'
 import {fetchMessagesThunk, postMessageThunk, deleteMessageThunk} from '../reducers/messagesReducer';
 
+
 const mapStateToProps = (state) => {
   return { 
     showMessages: state.messages.showMessages,

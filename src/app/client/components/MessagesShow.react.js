@@ -32,6 +32,7 @@ class MessagesShow extends Component {
         <ul className="list-group">
           {this.renderAllMessages(JSON.stringify(showMessages))}
         </ul>
+        <br></br>
         <form onSubmit={(e)=> {
           e.preventDefault()
           createMessage(e.target.elements.message.value);
