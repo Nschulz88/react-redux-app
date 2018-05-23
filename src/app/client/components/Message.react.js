@@ -7,7 +7,11 @@ class Message extends Component {
   }
   renderMessage(message) {
     const parsedMessage = JSON.parse(message);
-      return<div key={parsedMessage.id}>{parsedMessage.text} - posted: {parsedMessage.created_at}</div>
+      return (
+      <div key={parsedMessage.id}>
+      {parsedMessage.text} - posted: {parsedMessage.created_at}
+      </div>
+      );
   }
   render() {
     const { showMessage, loading, error } = this.props;

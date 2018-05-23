@@ -19,7 +19,7 @@ const messagesReducer = (state = {loading: true, showMessages: []}, action) => {
       return {showMessages: action.message}
     }
     case "DELETE_MESSAGE" : {
-      return {showMessages: action.messages }
+      return {...state, loading: true}
     }
     case "DELETE_SUCCESS": {
       return {showMessages: state.showMessages.filter(message => message.id !== action.id)}
@@ -59,7 +59,7 @@ const deleteMessageThunk = id => (dispatch) => {
   dispatch({type: 'DELETE_MESSAGE'})
     const request = axios({
       method: 'delete',
-      url: `${ROOT_URL}/messages/${id}`,
+      url: MESSAGES_URL+id,
       headers: []
     });
     request.then(response => {

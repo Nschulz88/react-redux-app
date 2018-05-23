@@ -9,17 +9,20 @@ class MessagesShow extends Component {
   }
 
   renderAllMessages(messages) {
+    console.log("in reder all messages check this.props", this.props)
     const parsedMessages = JSON.parse(messages);
     return parsedMessages.map((message) => {
-      return<li key={message.id}>{message.text} - posted: {Date(message.created_at)} - 
+      return<li key={message.id}>{message.text} - posted: {message.created_at}
+      <br /> 
         <Link to={"/messages/"+message.id}>
-        See Message Details</Link>
+        See Details</Link><br />
+          <button onClick={() => this.props.deleteMessage(message.id)}> Remove </button>
         </li>
     });
   }
 
   render() {
-    const { showMessages, loading, error, createMessage} = this.props;
+    const { showMessages, loading, error, createMessage } = this.props;
 
     if(loading) {
       return <div className="container"><h1>Messages</h1><h3>Loading...</h3></div>      
@@ -33,6 +36,7 @@ class MessagesShow extends Component {
           {this.renderAllMessages(JSON.stringify(showMessages))}
         </ul>
         <br></br>
+        <hr />
         <form onSubmit={(e)=> {
           e.preventDefault()
           createMessage(e.target.elements.message.value);
@@ -41,6 +45,7 @@ class MessagesShow extends Component {
           Your message: <input type="text" name="message"/>
           <input type="submit" value="Submit"/>
         </form>
+        <hr />
       </div>
     );
     } 

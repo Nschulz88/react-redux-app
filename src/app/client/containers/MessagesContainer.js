@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     createMessage: (text) => {
       dispatch(postMessageThunk(text));
     },
-    deleteMessage:(id) => {
+    deleteMessage: (id) => {
       dispatch(deleteMessageThunk(id))
     }
   }
